@@ -46,13 +46,22 @@ function appStart() {
       );
       const 입력한_글자 = block.innerText;
       const 정답_글자 = 정답[i];
+      const keyBlock = document.querySelector(
+        `.key-block[data-key='${입력한_글자}']`
+      );
       if (입력한_글자 === 정답_글자) {
         block.style.background = "#6AAA64";
         맞은_개수 += 1;
+        keyBlock.style.background = "#6AAA64";
       } else if (정답.includes(입력한_글자)) {
         block.style.background = "#C9B458";
-      } else block.style.background = "#787C7E";
-      block.style.color = "white";
+        keyBlock.style.background = "#C9B458";
+      } else {
+        block.style.background = "#787C7E";
+        keyBlock.style.background = "#787C7E";
+        block.style.color = "white";
+        keyBlock.style.color = "white";
+      }
     }
     if (맞은_개수 === 5) gameOver();
     else nextLine();
@@ -64,6 +73,7 @@ function appStart() {
     const thisBlock = document.querySelector(
       `.board-block[data-index='${attempts}${index}']`
     );
+
     if (event.key === "Backspace") handleBackspace();
     else if (index === 5) {
       if (event.key === "Enter") handleEnterKey();

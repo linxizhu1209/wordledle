@@ -1,0 +1,52 @@
+footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.key-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: rgb(211, 214, 218);
+  width: 40px;
+  height: 60px;
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.key-block-enter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: rgb(211, 214, 218);
+  width: 60px;
+  height: 60px;
+  border-radius: 7px;
+  font-weight: bolder;
+  font-size: 13px;
+}
+
+.key-block-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: rgb(211, 214, 218);
+  width: 60px;
+  height: 60px;
+  border-radius: 7px;
+}

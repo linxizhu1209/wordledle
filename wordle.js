@@ -1,12 +1,14 @@
-const 정답 = "TRUTH";
+const 정답 = ["TRUTH", "APPLE", "MOUSE", "QUEEN", "PANDA", "YOUTH"];
 let index = 0;
 let attempts = 0; //몇번째 시도
 let timer;
 
 function appStart() {
+  const random = Math.floor(Math.random() * 6 + 1);
+  const 오늘의정답 = 정답[random];
   const displayGameover = () => {
     const div = document.createElement("div");
-    div.innerText = "게임이 종료됐습니다!!";
+    div.innerHTML = `게임이 종료됐습니다!!<br> 정답은 ${오늘의정답}이었습니다!!`;
     div.style =
       "display:flex; justify-content:center;align-items:center;position:absolute; top:40vh; left:25vw; width:200px; height:100px; opacity:0.5;background-color:white";
     document.body.appendChild(div);
@@ -45,7 +47,7 @@ function appStart() {
         `.board-block[data-index='${attempts}${i}']`
       );
       const 입력한_글자 = block.innerText;
-      const 정답_글자 = 정답[i];
+      const 정답_글자 = 오늘의정답[i];
       const keyBlock = document.querySelector(
         `.key-block[data-key='${입력한_글자}']`
       );
@@ -53,7 +55,7 @@ function appStart() {
         block.style.background = "#6AAA64";
         맞은_개수 += 1;
         keyBlock.style.background = "#6AAA64";
-      } else if (정답.includes(입력한_글자)) {
+      } else if (오늘의정답.includes(입력한_글자)) {
         block.style.background = "#C9B458";
         keyBlock.style.background = "#C9B458";
       } else {
@@ -106,7 +108,32 @@ function appStart() {
   //(추가) 상단에 게임 시간 표시하기
   //(선택) 키보드에도 동일하게 표시
   //(선택) 키보드 클릭으로도 입력
+
   startTimer();
+  const clickKey = (x) => {
+    const keyBlock = x;
+    const thisBlock = document.querySelector(
+      `.board-block[data-index='${attempts}${index}']`
+    );
+    const asciiKey = keyBlock.charCodeAt(0);
+
+    if (keyBlock === "DELETE") handleBackspace();
+    else if (index === 5) {
+      if (keyBlock === "ENTER") handleEnterKey();
+      else return;
+    } else if (65 <= asciiKey <= 90) {
+      //문자를 숫자로 변경함! ascii코드 이용
+      thisBlock.innerText = keyBlock;
+      index += 1; //index ++
+    }
+  };
+
+  window.document.body.querySelectorAll("[data-key]").forEach((x) => {
+    x.addEventListener("click", () => {
+      clickKey(x.dataset["key"]);
+      console.log(x.dataset["key"]); //clickKey()
+    });
+  });
 }
 
 appStart();

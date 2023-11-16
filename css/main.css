@@ -4,6 +4,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  position: relative;
 }
 
 .board-row {
@@ -20,4 +21,20 @@ main {
   border: 3px solid rgb(227, 229, 232);
   width: 60px;
   height: 60px;
+}
+
+#message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 30vh;
+  left: 43vw;
+  width: 170px;
+  height: 100px;
+  opacity: 0;
+  font-family: fantasy;
+  font-weight: bold;
+  background-color: rgb(172, 65, 65);
+  box-shadow: 1px 2px 2px 2px rgb(83, 22, 22);
 }

@@ -7,13 +7,115 @@ function appStart() {
   const random = Math.floor(Math.random() * 6 + 1);
   const 오늘의정답 = 정답[random];
   const displayGameover = () => {
-    const div = document.createElement("div");
-    div.innerHTML = `게임이 종료됐습니다!!<br> 정답은 ${오늘의정답}이었습니다!!`;
-    div.style =
-      "display:flex; justify-content:center;align-items:center;position:absolute; top:40vh; left:25vw; width:200px; height:100px; opacity:0.5;background-color:white";
-    document.body.appendChild(div);
-  };
+    const message = document.getElementById("message");
+    message.style.opacity = 1;
+    message.innerText = `게임이 종료됐습니다!!정답은 ${오늘의정답}~~!`;
+    // 맞은 알파벳이 정답문구로 정렬되도록
+    document
+      .querySelector(`.key-block[data-key='${오늘의정답[0]}']`)
+      .animate(
+        [
+          { transform: "translateX(0px)" },
+          { transform: "translateY(-400px)" },
+          { transform: "translateX(100px)" },
+          { transform: "translateY(50px)" },
+          { transform: "translateY(-100px)" },
+        ],
+        { duration: 6000, iterations: Infinity }
+      );
+    document
+      .querySelector(`.key-block[data-key='${오늘의정답[1]}']`)
+      .animate(
+        [
+          { transform: "translateX(0px)" },
+          { transform: "translateY(-500px)" },
+          { transform: "translateX(100px)" },
+          { transform: "translateY(50px)" },
+          { transform: "translateY(-100px)" },
+        ],
+        { duration: 4000, iterations: Infinity }
+      );
 
+    document
+      .querySelector(`.key-block[data-key='${오늘의정답[2]}']`)
+      .animate(
+        [
+          { transform: "translateX(0px)" },
+          { transform: "translateY(-350px)" },
+          { transform: "translateX(-300px)" },
+          { transform: "translateY(-10px)" },
+          { transform: "translateX(300px)" },
+          { transform: "translateY(-100px)" },
+        ],
+        { duration: 5000, iterations: Infinity }
+      );
+    document
+      .querySelector(`.key-block[data-key='${오늘의정답[3]}']`)
+      .animate(
+        [
+          { transform: "translateX(0px)" },
+          { transform: "translateY(-650px)" },
+          { transform: "translateX(500px)" },
+          { transform: "translateY(-20px)" },
+          { transform: "translateY(200px)" },
+        ],
+        { duration: 3000, iterations: Infinity }
+      );
+
+    document
+      .querySelector(`.key-block[data-key='${오늘의정답[4]}']`)
+      .animate(
+        [
+          { transform: "translateX(0px)" },
+          { transform: "translateY(-300px)" },
+          { transform: "translateX(300px)" },
+          { transform: "translateY(-50px)" },
+          { transform: "translateY(100px)" },
+        ],
+        { duration: 3000, iterations: Infinity }
+      );
+    // }
+    //     for (let i = 0; i < 오늘의정답.length; i + 2) {
+    //       const keyBlock1 = document.querySelector(
+    //         `.key-block[data-key='${오늘의정답[i]}']`
+    //       );
+    //       keyBlock1.animate(
+    //         [
+    //           // keyframes
+    //           { transform: "translateX(0px)" },
+    //           { transform: "translateY(-200px)" },
+    //           { transform: "translateX(100px)" },
+    //           { transform: "translateY(50px)" },
+    //           { transform: "translateY(-100px)" },
+    //         ],
+    //         {
+    //           // timing options
+    //           duration: 6000,
+    //           iterations: Infinity,
+    //         }
+    //       );
+    //     }
+    //     for (let i = 1; i < 오늘의정답.length; i + 2) {
+    //       const keyBlock2 = document.querySelector(
+    //         `.key-block[data-key='${오늘의정답[i]}']`
+    //       );
+    //       keyBlock2.animate(
+    //         [
+    //           // keyframes
+    //           { transform: "translateX(0px)" },
+    //           { transform: "translateY(-300px)" },
+    //           { transform: "translateX(-100px)" },
+    //           { transform: "translateY(-50px)" },
+    //           { transform: "translateY(+100px)" },
+    //         ],
+    //         {
+    //           // timing options
+    //           duration: 6000,
+    //           iterations: Infinity,
+    //         }
+    //       );
+    //     }
+  };
   const gameOver = () => {
     window.removeEventListener("keydown", handleKeydown);
     displayGameover();
@@ -96,6 +198,7 @@ function appStart() {
       const sec = flowTime.getSeconds().toString();
       const timeH1 = document.querySelector("#timer");
       timeH1.innerText = `${min.padStart(2, "0")}:${sec.padStart(2, "0")}`;
+      nowTime.get;
     }
 
     timer = setInterval(setTime, 1000); //timer에 id를 저장하게됨(setInterval의 id)
@@ -131,7 +234,8 @@ function appStart() {
   window.document.body.querySelectorAll("[data-key]").forEach((x) => {
     x.addEventListener("click", () => {
       clickKey(x.dataset["key"]);
-      console.log(x.dataset["key"]); //clickKey()
+      console.log(x.dataset.key); //clickKey()
+      console.log(x.getAttribute("data-key"));
     });
   });
 }
